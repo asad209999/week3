@@ -1,0 +1,17 @@
+<h1>Your Cart</h1>
+
+<% if (cart.length === 0) { %>
+  <p>No items in cart</p>
+<% } else { %>
+  <ul>
+    <% cart.forEach(p => { %>
+      <li>
+        <img src="<%= p.image %>" width="50"> 
+        <%= p.name %> - PKR <%= p.price %>
+      </li>
+    <% }) %>
+  </ul>
+  <h3>Total: PKR <%= total %></h3>
+<% } %>
+
+<a href="/products">Continue Shopping</a>

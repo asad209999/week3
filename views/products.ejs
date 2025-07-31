@@ -1,20 +1,33 @@
+<h1>Products</h1>
 
 <form method="get" action="/products">
-    <input type="text" name="search" placeholder="Search...">
-    <button type="submit">Search</button>
+  <input type="text" name="search" value="<%= search %>" placeholder="Search...">
+  <select name="sort">
+    <option value="">Sort By</option>
+    <option value="price-asc" <%= sort === "price-asc" ? "selected" : "" %>>Price: Low to High</option>
+    <option value="price-desc" <%= sort === "price-desc" ? "selected" : "" %>>Price: High to Low</option>
+    <option value="name-asc" <%= sort === "name-asc" ? "selected" : "" %>>Name: A-Z</option>
+    <option value="name-desc" <%= sort === "name-desc" ? "selected" : "" %>>Name: Z-A</option>
+  </select>
+  <button type="submit">Apply</button>
 </form>
+
 <div class="grid">
-    <% products.forEach(p => { %>
-        <div class="card">
-            <h3><%= p.name %></h3>
-            <img src="<%= p.image %>" alt="<%= p.name %>">
-            <p> PKR <%= p.price %></p>
-            <a href="/products/<%= p._id %>">View</a>
-        </div>
-    <% }) %>
+  <% products.forEach(p => { %>
+    <div class="card">
+      <h3><%= p.name %></h3>
+      <img src="<%= p.image %>" alt="<%= p.name %>" width="150">
+      <p>PKR <%= p.price %></p>
+      <form method="POST" action="/cart/add/<%= p._id %>">
+        <button type="submit">Add to Cart</button>
+      </form>
+      <a href="/products/<%= p._id %>">View</a>
+    </div>
+  <% }) %>
 </div>
+
 <div class="pagination">
-    <% for (let i = 1; i <= totalPages; i++) { %>
-        <a href="?page=<%= i %>"><%= i %></a>
-    <% } %>
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a href="?search=<%= search %>&sort=<%= sort %>&page=<%= i %>"><%= i %></a>
+  <% } %>
 </div>
