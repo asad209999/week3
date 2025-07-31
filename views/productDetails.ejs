@@ -2,28 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title><%= product.name %> - Product Details</title>
-  <link rel="stylesheet" href="/styles.css"> <!-- make sure this path is correct -->
+  <title><%= product.name %> | Product Details</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 2rem;
-      background: #f9f9f9;
+      padding: 20px;
     }
-    .container {
-      display: flex;
-      gap: 2rem;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      max-width: 900px;
+    .product-card {
+      max-width: 600px;
       margin: auto;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
     }
-    .product-image img {
-      width: 300px;
+    .product-card img {
+      max-width: 100%;
       border-radius: 10px;
     }
-    .product-details h1 {
-      margin-bottom: 1rem;
+    .product-info {
+      margin-top: 20px;
     }
+    .product-info h1 {
+      margin-bottom: 10px;
+    }
+    .product-info p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-card">
+    <img src="<%= product.image %>" alt="<%= product.name %>">
+    <div class="product-info">
+      <h1><%= product.name %></h1>
+      <p><strong>Price:</strong> PKR <%= product.price %></p>
+      <p><strong>Category:</strong> <%= product.category %></p>
+      <p><strong>Description:</strong> <%= product.description %></p>
+      <p><strong>Stock:</strong> <%= product.stock %></p>
+    </div>
+  </div>
+
+</body>
+</html>
