@@ -3,16 +3,19 @@ const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
+require("dotenv").config();
+
 
 const productRoutes = require("./routes/products");
 
 const cartRoutes = require("./routes/cart");
 
-mongoose.connect("mongodb://127.0.0.1:27017/ecommerce", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log("MongoDB connected"))
-  .catch(err => console.log("Mongo Error", err));
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB connected"))
+.catch(err => console.log("❌ MongoDB Error", err));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
