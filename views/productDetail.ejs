@@ -1,12 +1,24 @@
-<h1><%= product.name %></h1>
-<img src="<%= product.image %>" width="200">
-<p><%= product.description %></p>
-<p>Price: PKR <%= product.price %></p>
-<p>Category: <%= product.category %></p>
-<p>Stock: <%= product.stock %></p>
+<!-- views/productDetails.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= product.name %> - Product Details</title>
+  <link rel="stylesheet" href="/styles.css"><!-- optional -->
+</head>
+<body>
+  <div class="container" style="max-width: 600px; margin: auto; text-align: center;">
+    <h1><%= product.name %></h1>
+    <img src="<%= product.image %>" alt="<%= product.name %>" style="max-width: 100%; height: auto;">
+    <p><strong>Description:</strong> <%= product.description %></p>
+    <p><strong>Category:</strong> <%= product.category %></p>
+    <p><strong>Price:</strong> PKR <%= product.price %></p>
+    <p><strong>Stock:</strong> <%= product.stock %></p>
 
-<form method="POST" action="/cart/add/<%= product._id %>">
-  <button type="submit">Add to Cart</button>
-</form>
-
-<a href="/products">Back to Products</a>
+    <a href="/cart/add/<%= product._id %>" style="display: inline-block; padding: 10px 20px; background-color: green; color: white; text-decoration: none; border-radius: 5px;">Add to Cart</a>
+    <br><br>
+    <a href="/products" style="color: blue; text-decoration: underline;">&larr; Back to Store</a>
+  </div>
+</body>
+</html>
