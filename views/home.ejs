@@ -13,7 +13,8 @@
         <div class="product-card">
           <img src="<%= product.image %>" alt="<%= product.name %>" width="100%">
           <h3><%= product.name %></h3>
-          <p><%= product.price %> PKR </p>
+          <p>Price: PKR <%= p.price %></p>
+
           <a href="/products/<%= product._id %>">View Details</a>
         </div>
       <% }) %>
