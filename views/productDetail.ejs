@@ -1,112 +1,29 @@
-<!-- views/products.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Store - Products</title>
-  <link rel="stylesheet" href="/styles.css">
+  <title><%= product.name %> - Product Details</title>
+  <link rel="stylesheet" href="/styles.css"> <!-- make sure this path is correct -->
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+      padding: 2rem;
+      background: #f9f9f9;
     }
     .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-    }
-    .search-bar {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .search-bar input {
-      padding: 0.5rem;
-      width: 250px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      display: flex;
       gap: 2rem;
-    }
-    .card {
       background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-      padding: 1rem;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: auto;
     }
-    .card img {
-      max-width: 100%;
-      height: 200px;
-      object-fit: cover;
+    .product-image img {
+      width: 300px;
+      border-radius: 10px;
     }
-    .card h3 {
-      margin: 0.5rem 0;
+    .product-details h1 {
+      margin-bottom: 1rem;
     }
-    .card p {
-      color: green;
-      font-weight: bold;
-    }
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 0.5rem 1rem;
-      background-color: #333;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    .pagination {
-      margin-top: 2rem;
-      text-align: center;
-    }
-    .pagination a {
-      margin: 0 5px;
-      text-decoration: none;
-      color: #333;
-      padding: 5px 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background: white;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>🛍️ Welcome to Our Online Store</h1>
-  </header>
-  <div class="container">
-    <div class="search-bar">
-      <form method="get" action="/products">
-        <input type="text" name="search" placeholder="Search for products...">
-        <button type="submit">Search</button>
-      </form>
-    </div>
-    <div class="grid">
-      <% products.forEach(p => { %>
-        <div class="card">
-          <img src="<%= p.image %>" alt="<%= p.name %>">
-          <h3><%= p.name %></h3>
-          <p>PKR <%= p.price %></p>
-          <a href="/products/<%= p._id %>">View</a>
-        </div>
-      <% }) %>
-    </div>
-    <div class="pagination">
-      <% for (let i = 1; i <= totalPages; i++) { %>
-        <a href="?page=<%= i %>"><%= i %></a>
-      <% } %>
-    </div>
-  </div>
-</body>
-</html>
