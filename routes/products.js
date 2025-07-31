@@ -26,8 +26,19 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const product = await Product.findById(req.params.id);
-  res.render("productDetails", { product });
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      console.log("❌ Product not found");
+      return res.status(404).send("Product not found");
+    }
+    console.log("✅ Product found:", product);
+    res.render("productDetails", { product });
+  } catch (err) {
+    console.log("❌ Error fetching product:", err);
+    res.status(500).send("Internal server error");
+  }
 });
+
 
 module.exports = router;
